@@ -3,6 +3,7 @@
 
 import requests
 import lxml
+import os
 from flask import jsonify
 from bs4 import BeautifulSoup
 
@@ -11,7 +12,7 @@ def weekends():
     try:
         index_r = requests.get('https://www.mafengwo.cn/cy/10133/tese.html').text
     except:
-        with open('/Users/kasheemlew/Documents/tt/tt/app/spiders/index.html') as f:
+        with open('/'.join(os.path.abspath('index.html').split('/')[:-1]+['app', 'spiders', 'index.html'])) as f:
             index_r = ''.join(f.readlines())
 
     index_soup = BeautifulSoup(index_r, 'lxml')
